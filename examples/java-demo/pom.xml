@@ -73,9 +73,85 @@
             </execution>
           </executions>
           <configuration>
-            <url>https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/apis.guru/2.2.0/openapi.yaml</url>
+            <file>openai.yaml</file>
+            <!-- <url>https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/apis.guru/2.2.0/openapi.yaml</url> -->
           </configuration>
         </plugin>
+
+
+<!--  Fix the bugs! -->
+          <plugin>
+              <groupId>com.google.code.maven-replacer-plugin</groupId>
+              <artifactId>replacer</artifactId>
+              <version>1.5.3</version>
+              <executions>
+                  <execution>
+                      <id>first-execution</id>
+                      <phase>process-sources</phase>
+                      <goals>
+                          <goal>replace</goal>
+                      </goals>
+                      <configuration>
+                          <file>target/generated-sources/kiota/apisdk/models/CreateChatCompletionRequest.java</file>
+                          <replacements>
+                              <replacement>
+                                  <token>"inf"</token>
+                                  <value>100</value>
+<!--                                  This model's maximum context length is 4097 tokens. However, you requested 2147483663 tokens (16 in the messages, 2147483647 in the completion). Please reduce the length of the messages or completion.-->
+                              </replacement>
+                          </replacements>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>second-execution</id>
+                      <phase>process-sources</phase>
+                      <goals>
+                          <goal>replace</goal>
+                      </goals>
+                      <configuration>
+                          <file>target/generated-sources/kiota/apisdk/models/CreateChatCompletionRequest.java</file>
+                          <replacements>
+                              <replacement>
+                                  <token>ParseNodeHelper</token>
+                                  <value>com.microsoft.kiota.serialization.ParseNodeHelper</value>
+                              </replacement>
+                          </replacements>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>third-execution</id>
+                      <phase>process-sources</phase>
+                      <goals>
+                          <goal>replace</goal>
+                      </goals>
+                      <configuration>
+                          <file>target/generated-sources/kiota/apisdk/models/CreateCompletionRequest.java</file>
+                          <replacements>
+                              <replacement>
+                                  <token>ParseNodeHelper</token>
+                                  <value>com.microsoft.kiota.serialization.ParseNodeHelper</value>
+                              </replacement>
+                          </replacements>
+                      </configuration>
+                  </execution>
+                  <execution>
+                      <id>fourth-execution</id>
+                      <phase>process-sources</phase>
+                      <goals>
+                          <goal>replace</goal>
+                      </goals>
+                      <configuration>
+                          <file>target/generated-sources/kiota/apisdk/models/CreateEmbeddingRequest.java</file>
+                          <replacements>
+                              <replacement>
+                                  <token>ParseNodeHelper</token>
+                                  <value>com.microsoft.kiota.serialization.ParseNodeHelper</value>
+                              </replacement>
+                          </replacements>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
       </plugins>
     </build>
 
