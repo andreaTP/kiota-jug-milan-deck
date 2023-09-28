@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.redhat.kiota</groupId>
+    <artifactId>kiota-examples</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+
+    <properties>
+      <maven.compiler.source>17</maven.compiler.source>
+      <maven.compiler.target>17</maven.compiler.target>
+
+      <kiota-libs.version>0.7.4</kiota-libs.version>
+    </properties>
+
+    <dependencies>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-abstractions</artifactId>
+          <version>${kiota-libs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-http-okHttp</artifactId>
+          <version>${kiota-libs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-serialization-json</artifactId>
+          <version>${kiota-libs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-serialization-text</artifactId>
+          <version>${kiota-libs.version}</version>
+          </dependency>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-serialization-form</artifactId>
+          <version>${kiota-libs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>com.microsoft.kiota</groupId>
+          <artifactId>microsoft-kiota-serialization-multipart</artifactId>
+          <version>${kiota-libs.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>jakarta.annotation</groupId>
+          <artifactId>jakarta.annotation-api</artifactId>
+          <version>2.1.1</version>
+      </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+      <plugins>
+        <plugin>
+          <artifactId>kiota-maven-plugin</artifactId>
+          <groupId>com.redhat.cloud</groupId>
+          <version>0.0.6</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <url>https://raw.githubusercontent.com/APIs-guru/openapi-directory/main/APIs/apis.guru/2.2.0/openapi.yaml</url>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
+</project>
