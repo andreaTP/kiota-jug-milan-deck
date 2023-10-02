@@ -79,7 +79,7 @@
         </plugin>
 
 
-<!--  Fix the bugs! -->
+<!--  Fix all of the bugs! -->
           <plugin>
               <groupId>com.google.code.maven-replacer-plugin</groupId>
               <artifactId>replacer</artifactId>
